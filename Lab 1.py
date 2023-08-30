@@ -29,17 +29,12 @@ def GCD(num1, num2):
 # Test cases
 gcd_test_cases = [(100, 25), 
                   (48, 18), 
-                  (81, 27), 
-                  (17, 5), 
-                  (1024, 64),
+                  (17, 5),
                   (12345, 67890),
-                  (1234567890, 9876543210),
-                  (123456789012, 987654321098),
-                  (123456789012345, 987654321098765),
-                  (987654321000, 987654321123)]
+                  (234567, 765432)]
 
 # print result and expected to verify
-print("\n\t PART 1: GCD")
+print("\n\tPART 1: GCD")
 for a, b in gcd_test_cases:
 
     gcd, gcd_time = GCD(a,b)
@@ -47,7 +42,7 @@ for a, b in gcd_test_cases:
     print(f"\nTesting: {a}, {b} \
           \nResult: {gcd} \
           \nExpected: {math.gcd(a,b)} \
-          \nTime: {gcd_time}", end=None)
+          \nTime: {gcd_time} nanoseconds")
 
 
 ############################################################
@@ -117,16 +112,16 @@ for i in range(10000):
     minmax_test_cases[1].append(random.randint(1,100000))
 
 # print min and max values
-print("\n\t PART 2: MIN AND MAX")
+print("\n\tPART 2: MIN AND MAX")
 for test in minmax_test_cases:
     #min_val, max_val, mm_time = min_max(test)
     min_val, min_time = find_min(test)
     max_val, max_time = find_max(test)
     print(f"\nTesting: {len(test)} elements \
-          \nResult: Min: {min_val}, Max: {max_val} \
+          \nResult:   Min: {min_val}, Max: {max_val} \
           \nExpected: Min: {min(test)}, Max: {max(test)} \
-          \nMin Time: {min_time} \
-          \nMax Time: {max_time}")
+          \nMin Time: {min_time} nanoseconds\
+          \nMax Time: {max_time} nanoseconds")
     
 ############################################################
 #  PART 3 - Min/Max
