@@ -189,15 +189,6 @@ def daq_min(list, left, right):
         else:
             return min_right
 
-# # test cases
-# daq_test_cases = [[],[]]
-
-# for i in range(1000):
-#     daq_test_cases[0].append(random.randint(1,100000))
-
-# for i in range(10000):
-#     daq_test_cases[1].append(random.randint(1,100000))
-
 # print min and max values
 print("\n\tPART 3: DIVIDE AND CONQUER")
 for test in minmax_test_cases:
