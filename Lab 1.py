@@ -138,13 +138,6 @@ def daq_max(list, left, right):
     # if list has 1 element, return element
     if left == right:
         return list[left]
-    
-    # if list has 2 elements, return highest
-    elif right-left == 1:
-        if list[left] > list[right]:
-            return list[left]
-        else:
-            return list[right]
         
     else:
 
@@ -167,13 +160,6 @@ def daq_min(list, left, right):
     # if list has 1 element, return element
     if left == right:
         return list[left]
-    
-    # if list has 2 elements, return lowest
-    elif right-left == 1:
-        if list[left] < list[right]:
-            return list[left]
-        else:
-            return list[right]
         
     else:
 
