@@ -9,15 +9,6 @@ import math
 import random
 import time
 
-# function to measure time of functions
-# *args used to pass variable number of arguments
-def measure_time(function, *args):
-
-    start = time.time_ns() # start time
-    function(*args) # perform specified function
-    
-    return (time.time_ns() - start) # return total time
-
 ############################################################
 #  PART 1 - GCD
 ############################################################
