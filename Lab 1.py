@@ -14,7 +14,9 @@ import time
 ############################################################
 
 # best case: O(1)
+# if element is first list
 # worst case: O(n), n = min(num1,num2)
+# if all elements within range are checked
 def GCD(num1, num2):
 
     # get start time
@@ -50,28 +52,8 @@ for a, b in gcd_test_cases:
 #  PART 2 - Min/Max
 ############################################################
 
-def min_max(list):
-
-    start = time.time_ns()
-
-    # initialize min,max as first element for future comparisons
-    min = list[0]
-    max = list[0]
-
-    # iterate through all elements in the list
-    for i in list:
-
-        # if i is larger than max, assign it as max
-        if i > max:
-            max = i
-
-        # if i is smaller than min, assign it as min
-        elif i < min:
-            min = i
-
-    return min, max, time.time_ns() - start
-
 # O(n)
+# iterates through all elements
 def find_max(list):
 
     # get start time
@@ -122,14 +104,13 @@ for i in range(10000):
 print("\n\tPART 2: MIN AND MAX")
 for test in minmax_test_cases:
 
-    #min_val, max_val, mm_time = min_max(test)
     min_val, min_time = find_min(test)
     max_val, max_time = find_max(test)
 
     print(f"\nTesting: {len(test)} elements \
           \nResult:   Min: {min_val}, Max: {max_val} \
           \nExpected: Min: {min(test)}, Max: {max(test)} \
-          \nMin Time: {min_time} nanoseconds\
+          \nMin Time: {min_time} nanoseconds \
           \nMax Time: {max_time} nanoseconds")
     
 ############################################################
