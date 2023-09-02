@@ -9,6 +9,15 @@ import math
 import random
 import time
 
+# function to measure time of functions
+# *args used to pass variable number of arguments
+def measure_time(function, *args):
+
+    start = time.time_ns() # start time
+    function(*args) # perform specified function
+    
+    return (time.time_ns() - start) # return total time
+
 ############################################################
 #  PART 1 - GCD
 ############################################################
@@ -34,7 +43,7 @@ gcd_test_cases = [(100, 25),
                   (12345, 67890),
                   (234567, 765432)]
 
-# print result and expected to verify
+# print calculated and expected result, as well as total time
 print("\n\tPART 1: GCD")
 for a, b in gcd_test_cases:
 
@@ -71,8 +80,10 @@ def min_max(list):
 
     return min, max, time.time_ns() - start
 
+# O(n)
 def find_max(list):
 
+    # get start time
     start = time.time_ns()
 
     # initialize max as first element for future comparisons
@@ -88,8 +99,10 @@ def find_max(list):
     # return max and total time
     return max, time.time_ns() - start
 
+# O(n)
 def find_min(list):
 
+    # get start time
     start = time.time_ns()
 
     # initialize min as first element for future comparisons
@@ -105,7 +118,7 @@ def find_min(list):
     # return min and total time
     return min, time.time_ns() - start
 
-# test cases
+# test cases for 1000 and 10000 numbers
 minmax_test_cases = [[],[]]
 
 for i in range(1000):
@@ -166,7 +179,7 @@ def daq_min(list, left, right):
         # find mid index
         mid = (right + left) // 2
 
-        # recursively find max in each half
+        # recursively find min in each half
         min_left = daq_min(list, left, mid)
         min_right = daq_min(list, mid+1, right)
 
@@ -176,30 +189,34 @@ def daq_min(list, left, right):
         else:
             return min_right
 
-# test cases
-daq_test_cases = [[],[]]
+# # test cases
+# daq_test_cases = [[],[]]
 
-for i in range(1000):
-    daq_test_cases[0].append(random.randint(1,100000))
+# for i in range(1000):
+#     daq_test_cases[0].append(random.randint(1,100000))
 
-for i in range(10000):
-    daq_test_cases[1].append(random.randint(1,100000))
+# for i in range(10000):
+#     daq_test_cases[1].append(random.randint(1,100000))
 
 # print min and max values
 print("\n\tPART 3: DIVIDE AND CONQUER")
-for test in daq_test_cases:
+for test in minmax_test_cases:
 
+    # assign left and right indices
     right = len(test)-1
     left = 0
 
-    start = time.time_ns()
+    # find max and calculate time
+    daq_max_start = time.time_ns()
     daq_max_val = daq_max(test, left, right)
-    daq_max_time = time.time_ns() - start
+    daq_max_time = time.time_ns() - daq_max_start
 
-    start = time.time_ns()
+    # find min and calculate time
+    daq_min_start = time.time_ns()
     daq_min_val = daq_min(test, left, right)
-    daq_min_time = time.time_ns() - start
+    daq_min_time = time.time_ns() - daq_min_start
 
+    # print results
     print(f"\nTesting: {len(test)} elements \
           \nResult:   Min: {daq_min_val}, Max: {daq_max_val} \
           \nExpected: Min: {min(test)}, Max: {max(test)} \
