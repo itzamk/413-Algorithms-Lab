@@ -31,8 +31,8 @@ def linear_search(lst, target):
         if lst[i] == target:
             return i
         
-# Best: O(1)
-# Worst: O(logn)
+# Best: O(1) - mid element
+# Worst: O(logn) - first or last
 def binary_search(lst, target):
 
     # assign left and right indices
@@ -57,8 +57,8 @@ def binary_search(lst, target):
         else:
             right = mid - 1
 
-# Best: O(n)
-# Worst: O(n^2)
+# Best: O(n) - sorted
+# Worst: O(n^2) - reverse
 def insertion_sort(lst):
 
     # loop through list starting at second
@@ -81,6 +81,7 @@ def insertion_sort(lst):
 
 # Best: O(n^2)
 # Worst: O(n^2)
+# always compares all elements
 def selection_sort(lst):
 
     # iterate through list
@@ -101,8 +102,8 @@ def selection_sort(lst):
     
     return lst
 
-# Best: O(n)
-# Worst: O(n^2)
+# Best: O(n) - sorted
+# Worst: O(n^2) - reverse
 def bubble_sort(lst):
 
     # length of list
@@ -266,14 +267,16 @@ print(f'Bubble sort time: {measure_time(student_bubble_sort, students_data.copy(
 
 print("\n PART 3 (SORTED):\n")
 
+sorted_students_data = student_insertion_sort(students_data.copy(), "Student ID")
+
 # Insertion Sort
-print(f'Insertion sort time: {measure_time(student_insertion_sort, students_data.copy(), "Student ID"):.2f} nanoseconds')
+print(f'Insertion sort time: {measure_time(student_insertion_sort, sorted_students_data.copy(), "Student ID"):.2f} nanoseconds')
 
 # Selection Sort
-print(f'Selection sort time: {measure_time(student_selection_sort, students_data.copy(), "Student ID"):.2f} nanoseconds')
+print(f'Selection sort time: {measure_time(student_selection_sort, sorted_students_data.copy(), "Student ID"):.2f} nanoseconds')
 
 # Bubble Sort
-print(f'Bubble sort time: {measure_time(student_bubble_sort, students_data.copy(), "Student ID"):.2f} nanoseconds')
+print(f'Bubble sort time: {measure_time(student_bubble_sort, sorted_students_data.copy(), "Student ID"):.2f} nanoseconds')
 
 ############################################################
 #  PART 4 - STUDENT SORTING SAME STUDENT
