@@ -15,11 +15,6 @@ def measure_time(function, *args, number=1):
     wrapped = lambda: function(*args)  # Wrap the function call in a lambda to handle the arguments
     return timeit.timeit(wrapped, number=number)* 1e9
 
-    # start = time.time_ns() # start time
-    # function(*args) # perform specified function
-    
-    # return (time.time_ns() - start) # return total time
-
 # Best: O(1)
 # Worst: O(n)
 def linear_search(lst, target):
