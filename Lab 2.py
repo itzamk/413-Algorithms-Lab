@@ -153,7 +153,7 @@ def student_insertion_sort(lst, key):
         # and curr is less than previous element
         while j >= 0 and curr[key] < lst[j][key]:
 
-            lst[j + 1] = lst[j] # move element to the right (copy?)
+            lst[j + 1] = lst[j] # move element to the right (copy)
             j -= 1 # move to previous element
 
         # insert current element in correct spot
@@ -212,19 +212,23 @@ def student_bubble_sort(lst, key):
 
 # Read file
 def read_student_data(filename):
+
     # store student data
     students = []
+
     # open the file in read mode
     with open(filename, 'r') as file:
+
         # read first line to get the headers/column names
         headers = file.readline().strip().split(',')
         
         # loop through each line in the file
         for line in file:
+
             # split the line into individual data items
             data = line.strip().split(',')
             
-            # create a dictionary for each student using a dictionary comprehension
+            # create a dictionary for each student
             student = {}
             
             # iterate through items in line
@@ -239,7 +243,9 @@ def read_student_data(filename):
 
 students_data = read_student_data('students.txt')
 
-search_key = 'Student ID'
+#for student in students_data:
+#    print(student)
+
 search_value = 7001
 
 print("\n PART 2:\n")
@@ -262,16 +268,19 @@ print(f'Bubble sort time: {measure_time(student_bubble_sort, students_data.copy(
 
 print("\n PART 3 (SORTED):\n")
 
-sorted_students_data = student_insertion_sort(students_data.copy(), "Student ID")
+sorted_students_data = student_insertion_sort(students_data.copy(), "first name")
+
+for student in sorted_students_data:
+    print(student)
 
 # Insertion Sort
-print(f'Insertion sort time: {measure_time(student_insertion_sort, sorted_students_data.copy(), "Student ID"):.2f} nanoseconds')
+print(f'Insertion sort time: {measure_time(student_insertion_sort, sorted_students_data.copy(), "first name"):.2f} nanoseconds')
 
 # Selection Sort
-print(f'Selection sort time: {measure_time(student_selection_sort, sorted_students_data.copy(), "Student ID"):.2f} nanoseconds')
+print(f'Selection sort time: {measure_time(student_selection_sort, sorted_students_data.copy(), "first name"):.2f} nanoseconds')
 
 # Bubble Sort
-print(f'Bubble sort time: {measure_time(student_bubble_sort, sorted_students_data.copy(), "Student ID"):.2f} nanoseconds')
+print(f'Bubble sort time: {measure_time(student_bubble_sort, sorted_students_data.copy(), "first name"):.2f} nanoseconds')
 
 ############################################################
 #  PART 4 - STUDENT SORTING SAME STUDENT
