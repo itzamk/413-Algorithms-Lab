@@ -124,10 +124,10 @@ def kmp_search(text, pattern):
 
 # Test Cases
 print("\nKMP Test 1")
-naive_search("This is a CMPSC 412 lab course. Students take this course along with CMPSC 462", "CMPSC")
+kmp_search("This is a CMPSC 412 lab course. Students take this course along with CMPSC 462", "CMPSC")
 
 print("\nKMP Test 2")
-naive_search("This is a CMPSC 412 lab course. Students take this course along with CMPSC 462", "course")
+kmp_search("This is a CMPSC 412 lab course. Students take this course along with CMPSC 462", "course")
 
 print("\nKMP Test 3")
-naive_search("AABAACAADAABAABAABBBBBAAABDCBA", "BBBBBA")
+kmp_search("AABAACAADAABAABAABBBBBAAABDCBA", "BBBBBA")
