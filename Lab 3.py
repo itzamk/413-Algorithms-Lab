@@ -57,8 +57,8 @@ def kmp_search(text, pattern):
     i = 1
     
     # calculate lps array
-    while i < m:
-
+    while i < m:                                                    # EX. A B A B A C
+                                                                    #     0 0 1 2 3 0
         # if chars match
         if pattern[i] == pattern[length]:
 
@@ -88,7 +88,11 @@ def kmp_search(text, pattern):
     
     # loop through the text
     while i < n:
-
+                                                            # EX. 
+                                                            # T:  A B A B C A B A B D
+                                                            #
+                                                            # P:            A B A B D
+                                                            #               0 0 1 2 0
         # if chars match, increment i and j
         if pattern[j] == text[i]:
             i += 1
@@ -110,7 +114,7 @@ def kmp_search(text, pattern):
                 # move j to next potential match
                 j = lps[j - 1]
 
-            # move to character 
+            # move up a char in text 
             else:
                 i += 1
 
@@ -120,4 +124,10 @@ def kmp_search(text, pattern):
 
 # Test Cases
 print("\nKMP Test 1")
-result = kmp_search("This is a CMPSC 412 lab course.", "CMPSC")
+naive_search("This is a CMPSC 412 lab course. Students take this course along with CMPSC 462", "CMPSC")
+
+print("\nKMP Test 2")
+naive_search("This is a CMPSC 412 lab course. Students take this course along with CMPSC 462", "course")
+
+print("\nKMP Test 3")
+naive_search("AABAACAADAABAABAABBBBBAAABDCBA", "BBBBBA")
