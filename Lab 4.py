@@ -189,64 +189,18 @@ class PQ_LinkedList:
         
 #### PART 3 - Min/Max Heaps ####
 
-class PQ_MinHeap:
-
-    # intitialize heap as list
-    def __init__(self):
-        self.heap = []
-
-    # insert using heapq.heappush
-    def insert(self, item, priority):
-        heapq.heappush(self.heap, (priority, item))
-
-    
-    def peek(self):
-        
-        # if heap is not empty
-        if self.heap:
-
-            # return item with min priority 
-            priority, item = self.heap[0]
-            return item, priority
-        
-        else:
-            return None
-
-    def delete(self):
-
-        # if heap is not empty
-        if self.heap:
-
-            # delete and return item with min priority 
-            priority, item = heapq.heappop(self.heap)
-            return item, priority
-        
-        else:
-            return None
-
-    def change_priority(self, item, new_priority):
-
-        # iterate through elements in heap
-        for i, (priority, heap_item) in enumerate(self.heap):
-            
-            # if item is found
-            if heap_item == item:
-
-                # set new priority based on index and rearrange
-                self.heap[i] = (new_priority, item)
-                heapq.heapify(self.heap)
-                return
-
-class PQ_MaxHeap:
+class PQ_Heap:
 
     # intitialize heap as list
     def __init__(self, is_max=True):
         self.heap = []
         self.is_max = is_max
 
-    # insert using heapq.heappush (negated priority)
+    # insert using heapq.heappush 
     def insert(self, item, priority):
+        
         if self.is_max:
+            # (negated priority) if max heap
             heapq.heappush(self.heap, (-priority, item))
         else:
             heapq.heappush(self.heap, (priority, item))
@@ -254,39 +208,33 @@ class PQ_MaxHeap:
 
     def peek(self):
 
-        if self.is_max:
-            # if heap is not empty
-            if self.heap:
+        # if heap is not empty
+        if self.heap:
 
+            if self.is_max:
+            
                 # return item with max priority (negate)
                 priority, item = self.heap[0]
                 return item, -priority
             
-        else:
-            # if heap is not empty
-            if self.heap:
-
+            else:
                 # return item with min priority 
                 priority, item = self.heap[0]
                 return item, priority
             
-       
         return None
 
     def delete(self):
 
-        if self.is_max:
-            # if heap is not empty
-            if self.heap:
+        # if heap is not empty
+        if self.heap:
 
+            if self.is_max:
                 # delete and return item with max priority (negate)
                 priority, item = heapq.heappop(self.heap)
                 return item, -priority
         
-        else:
-            # if heap is not empty
-            if self.heap:
-
+            else:
                 # delete and return item with min priority 
                 priority, item = heapq.heappop(self.heap)
                 return item, priority
@@ -295,24 +243,20 @@ class PQ_MaxHeap:
 
     def change_priority(self, item, new_priority):
 
-        if self.is_max:
-            # iterate through elements in heap
-            for i, (priority, ele) in enumerate(self.heap):
+        
+        # iterate through elements in heap
+        for i, (priority, ele) in enumerate(self.heap):
 
-                # if item is found
-                if ele == item:
-
+            # if item is found
+            if ele == item:
+                
+                if self.is_max:
                     # set new priority based on index and rearrange
                     self.heap[i] = (-new_priority, item)
                     heapq.heapify(self.heap)
                     return
-        else:    
-            # iterate through elements in heap
-            for i, (priority, heap_item) in enumerate(self.heap):
                 
-                # if item is found
-                if heap_item == item:
-
+                else:  
                     # set new priority based on index and rearrange
                     self.heap[i] = (new_priority, item)
                     heapq.heapify(self.heap)
