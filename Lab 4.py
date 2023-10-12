@@ -249,7 +249,7 @@ class PQ_Heap:
 
             # if item is found
             if ele == item:
-                
+
                 if self.is_max:
                     # set new priority based on index and rearrange
                     self.heap[i] = (-new_priority, item)
@@ -261,3 +261,73 @@ class PQ_Heap:
                     self.heap[i] = (new_priority, item)
                     heapq.heapify(self.heap)
                     return
+                
+
+# Part 1: Array
+print("Part 1: Array")
+max_pq_array = PQ_Array(is_max=True)
+min_pq_array = PQ_Array(is_max=False)
+
+# Insert
+max_pq_array.insert('A', 3)
+min_pq_array.insert('A', 3)
+
+# Peek
+print(max_pq_array.peek())  # Output: ('A', 3)
+print(min_pq_array.peek())  # Output: ('A', 3)
+
+# Change Priority
+max_pq_array.change_priority('A', 4)
+min_pq_array.change_priority('A', 2)
+print(max_pq_array.peek())  # Output: ('A', 4)
+print(min_pq_array.peek())  # Output: ('A', 2)
+
+# Delete
+print(max_pq_array.delete())  # Output: ('A', 4)
+print(min_pq_array.delete())  # Output: ('A', 2)
+
+# Part 2: Linked List
+print("\nPart 2: Linked List")
+max_pq_ll = PQ_LinkedList(is_max=True)
+min_pq_ll = PQ_LinkedList(is_max=False)
+
+# Insert
+max_pq_ll.insert('B', 2)
+min_pq_ll.insert('B', 2)
+
+# Peek
+print(max_pq_ll.peek())  # Output: ('B', 2)
+print(min_pq_ll.peek())  # Output: ('B', 2)
+
+# Change Priority
+max_pq_ll.change_priority('B', 3)
+min_pq_ll.change_priority('B', 1)
+print(max_pq_ll.peek())  # Output: ('B', 3)
+print(min_pq_ll.peek())  # Output: ('B', 1)
+
+# Delete
+print(max_pq_ll.delete())  # Output: ('B', 3)
+print(min_pq_ll.delete())  # Output: ('B', 1)
+
+# Part 3: Heap
+print("\nPart 3: Heap")
+max_pq_heap = PQ_Heap(is_max=True)
+min_pq_heap = PQ_Heap(is_max=False)
+
+# Insert
+max_pq_heap.insert('C', 1)
+min_pq_heap.insert('C', 1)
+
+# Peek
+print(max_pq_heap.peek())  # Output: ('C', 1)
+print(min_pq_heap.peek())  # Output: ('C', 1)
+
+# Change Priority
+max_pq_heap.change_priority('C', 2)
+min_pq_heap.change_priority('C', 0)
+print(max_pq_heap.peek())  # Output: ('C', 2)
+print(min_pq_heap.peek())  # Output: ('C', 0)
+
+# Delete
+print(max_pq_heap.delete())  # Output: ('C', 2)
+print(min_pq_heap.delete())  # Output: ('C', 0)
