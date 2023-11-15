@@ -19,24 +19,6 @@ class AVLTree:
     def __init__(self):
         self.root = None
 
-    # gets height of a node
-    def getHeight(self, node):
-        
-        # invalid node
-        if not node:
-            return 0
-        
-        return node.height
-
-    # get balance factor of node
-    def getBalance(self, node):
-        
-        # invalid node
-        if not node:
-            return 0
-        
-        return self.getHeight(node.left) - self.getHeight(node.right)
-
     def insert(self, val):
 
         # create new node to insert
@@ -80,6 +62,7 @@ class AVLTree:
             else:
                 return
             
+        # perform rotations to balance tree
         while node:
             self.rebalance(node)
             node = node.parent
@@ -183,27 +166,63 @@ class AVLTree:
             else:
                 self.root = None
 
+        # perform rotations to balance tree
         current = parent
         while current:
             self.rebalance(current)
             current = current.parent
 
+    # gets height of a node
+    def getHeight(self, node):
+        
+        # invalid node
+        if not node:
+            return 0
+        
+        return node.height
+
+    # get balance factor of node
+    def getBalance(self, node):
+        
+        # invalid node
+        if not node:
+            return 0
+        
+        # height of left subtree minus height of right subtree
+        return self.getHeight(node.left) - self.getHeight(node.right)
+    
     def rightRotate(self, y):
-        x = y.left
-        T2 = x.right
-        x.right = y
-        y.left = T2
+
+        # store values for rotation
+        x = y.left # x is left child of y
+        T2 = x.right # right subtree of of x
+
+        # perform rotation
+        x.right = y # x is root, y is right child
+        y.left = T2 # left subtree of y
+
+        # update heights
         y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
         x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right))
+
+        # return root
         return x
 
     def leftRotate(self, x):
-        y = x.right
-        T2 = y.left
-        y.left = x
-        x.right = T2
+
+        # store values for rotation
+        y = x.right # y is right child of x
+        T2 = y.left # left subtree of y
+
+        # perform rotation
+        y.left = x # y is new root, x is left child
+        x.right = T2 # right subtree of x
+
+        # update heights
         x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right))
         y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
+        
+        # return root
         return y
 
     def rebalance(self, node):
