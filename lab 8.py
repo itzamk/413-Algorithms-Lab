@@ -1,7 +1,7 @@
 '''
 Andrew Kozempel
 CMPSC 413
-Lab 7
+Lab 8
 Fall 2023
 '''
 
@@ -195,12 +195,16 @@ class AVLTree:
 
         # store values for rotation
         x = y.left # x is left child of y
-        T2 = x.right # right subtree of of x
+        x_right_sub = x.right # right subtree of of x
 
         # perform rotation
         x.right = y # x is root, y is right child
-        y.left = T2 # left subtree of y
+        y.left = x_right_sub # left subtree of y
 
+        #     y           x
+        #  x                y
+        #   RST          RST
+        
         # update heights
         y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
         x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right))
@@ -212,11 +216,15 @@ class AVLTree:
 
         # store values for rotation
         y = x.right # y is right child of x
-        T2 = y.left # left subtree of y
+        y_left_sub = y.left # left subtree of y
 
         # perform rotation
         y.left = x # y is new root, x is left child
-        x.right = T2 # right subtree of x
+        x.right = y_left_sub # right subtree of x
+
+        #     x            y
+        #       y        x   
+        #    LST          LST 
 
         # update heights
         x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right))
